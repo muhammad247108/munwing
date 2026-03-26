@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pakistan MUN Wing</title>
+  <meta name="description" content="Pakistan MUN Wing — a premium Model United Nations platform for young diplomats in Pakistan." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --bg-soft: #121212;
+      --panel: rgba(18, 18, 18, 0.82);
+      --panel-2: rgba(24, 24, 24, 0.95);
+      --text: #f5f5f5;
+      --muted: #b3b3b3;
+      --line: rgba(255,255,255,0.08);
+      --primary: #ffffff;
+      --primary-2: #cfcfcf;
+      --accent: #8e8e8e;
+      --accent-2: #e0e0e0;
+      --shadow: 0 24px 80px rgba(0,0,0,.45);
+      --radius: 28px;
+      --radius-sm: 18px;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.08), transparent 28%),
+        radial-gradient(circle at top right, rgba(255,255,255,.05), transparent 30%),
+        linear-gradient(180deg, #050505 0%, var(--bg) 45%, #101010 100%);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, textarea { font: inherit; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(18px);
+      background: rgba(8, 8, 8, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #ffffff, #8f8f8f);
+      box-shadow: 0 10px 30px rgba(255,255,255,.10);
+      position: relative;
+      flex: none;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 11px;
+      border: 2px solid rgba(0,0,0,.55);
+      border-radius: 10px;
+    }
+
+    .brand-text h1 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.8rem;
+      line-height: 1;
+      letter-spacing: .4px;
+    }
+
+    .brand-text p {
+      margin: 2px 0 0;
+      font-size: .82rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: rgba(245,245,245,.88);
+      font-size: .95rem;
+      font-weight: 500;
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ffffff, #9b9b9b);
+      transition: width .28s ease;
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.28);
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+    }
+
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 78px);
+      display: grid;
+      align-items: center;
+      padding: 46px 0 40px;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.08), transparent 25%),
+        radial-gradient(circle at 80% 10%, rgba(255,255,255,.06), transparent 23%),
+        linear-gradient(180deg, rgba(8,8,8,.15), rgba(8,8,8,.65));
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 66px 66px;
+      opacity: .15;
+      mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+      font-size: .9rem;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffffff, #a0a0a0);
+      box-shadow: 0 0 0 6px rgba(255,255,255,.08);
+    }
+
+    .hero h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3.2rem, 7vw, 6rem);
+      line-height: .94;
+      margin: 0;
+      letter-spacing: -1px;
+    }
+
+    .hero h2 .accent {
+      background: linear-gradient(90deg, #ffffff, #cfcfcf, #8e8e8e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 22px 0 0;
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      color: #0b0b0b;
+      background: linear-gradient(135deg, #ffffff, #d8d8d8 55%, #aaaaaa);
+      box-shadow: 0 18px 40px rgba(255,255,255,.10);
+    }
+
+    .btn-primary:hover, .btn-secondary:hover { transform: translateY(-2px); }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.11);
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(18,18,18,.88), rgba(10,10,10,.92));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-card-top {
+      padding: 22px 22px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .hero-card-top h3 {
+      margin: 0 0 6px;
+      font-size: 1.1rem;
+    }
+
+    .hero-card-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .mini-badge {
+      padding: 9px 12px;
+      border-radius: 999px;
+      color: #0b0b0b;
+      background: linear-gradient(135deg, #ffffff, #dcdcdc);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .hero-image {
+      margin-top: 18px;
+      min-height: 280px;
+      background:
+        linear-gradient(180deg, rgba(8,8,8,.05), rgba(8,8,8,.78)),
+        url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      position: relative;
+      filter: grayscale(100%);
+    }
+
+    .hero-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.04), rgba(255,255,255,.08));
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding: 16px 18px 18px;
+    }
+
+    .stat {
+      padding: 14px 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.25rem;
+      margin-bottom: 3px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: .84rem;
+    }
+
+    section.block {
+      padding: 88px 0;
+    }
+
+    .section-head {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .section-head h3 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.05;
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: -.4px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 1.02rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(18,18,18,.92), rgba(10,10,10,.92));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .card.pad { padding: 24px; }
+
+    .info-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .info-item {
+      display: flex;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .info-item .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      flex: none;
+      display: grid;
+      place-items: center;
+      color: #0b0b0b;
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffffff, #bdbdbd);
+    }
+
+    .info-item h4 { margin: 0 0 4px; font-size: 1rem; }
+    .info-item p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 22px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.08);
+      transition: transform .28s ease, border-color .28s ease, background .28s ease;
+      min-height: 180px;
+    }
+
+    .feature:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,.22);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+    }
+
+    .feature .feature-tag {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      font-size: .8rem;
+      margin-bottom: 14px;
+      color: var(--muted);
+    }
+
+    .feature h4 { margin: 0 0 8px; font-size: 1.05rem; }
+    .feature p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+    .committees {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .committee {
+      overflow: hidden;
+      position: relative;
+      padding: 0;
+    }
+
+    .committee .cover {
+      height: 170px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      filter: grayscale(100%);
+    }
+
+    .committee .cover::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(8,8,8,.08), rgba(8,8,8,.85));
+    }
+
+    .committee .content {
+      padding: 22px;
+    }
+
+    .committee .content h4 { margin: 0 0 8px; font-size: 1.15rem; }
+    .committee .content p { margin: 0 0 14px; color: var(--muted); font-size: .95rem; }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+      color: #f0f0f0;
+      font-size: .8rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .timeline-item strong {
+      font-size: 1rem;
+      color: #ffffff;
+    }
+
+    .timeline-item p {
+      margin: 4px 0 0;
+      color: var(--muted);
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .quote {
+      padding: 24px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .quote p {
+      margin: 0;
+      color: #ededed;
+      font-size: 1rem;
+    }
+
+    .quote .who {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffffff, #9c9c9c);
+      display: grid;
+      place-items: center;
+      color: #0b0b0b;
+      font-weight: 900;
+      flex: none;
+    }
+
+    .faq {
+      display: grid;
+      gap: 14px;
+    }
+
+    details {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      padding: 18px 20px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    details p { color: var(--muted); margin: 12px 0 0; }
+
+    .cta {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.06), rgba(255,255,255,.10));
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: var(--shadow);
+    }
+
+    .cta h3 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1;
+    }
+
+    .cta p {
+      margin: 12px 0 0;
+      color: #f3f3f3;
+      max-width: 760px;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .newsletter {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 14px 16px;
+      outline: none;
+    }
+
+    input::placeholder, textarea::placeholder { color: rgba(245,245,245,.55); }
+    input:focus, textarea:focus { border-color: rgba(255,255,255,.35); box-shadow: 0 0 0 4px rgba(255,255,255,.10); }
+
+    .footer {
+      padding: 40px 0 28px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr .9fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .footer h4 {
+      margin: 0 0 12px;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .footer a {
+      color: var(--muted);
+      display: inline-block;
+      margin: 0 0 10px;
+    }
+
+    .footer a:hover { color: var(--text); }
+
+    .bottom-bar {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: .92rem;
+    }
+
+    .scroll-top {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(18,18,18,.88);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: .25s ease;
+      z-index: 900;
+    }
+
+    .scroll-top.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0;
+      background: linear-gradient(90deg, #ffffff, #bdbdbd, #8e8e8e);
+      z-index: 1200;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid, .grid-2, .feature-grid, .committees, .testimonials, .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 840px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .nav-links { gap: 14px; justify-content: center; }
+      .nav-cta { justify-content: center; }
+      .hero-grid, .grid-2, .feature-grid, .committees, .testimonials, .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+      .hero { min-height: auto; padding-top: 26px; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .newsletter { grid-template-columns: 1fr; }
+      .hero h2 { font-size: clamp(2.8rem, 14vw, 4.4rem); }
+    }
+
+    @media (max-width: 520px) {
+      .container { width: min(calc(100% - 24px), var(--max)); }
+      section.block { padding: 72px 0; }
+      .hero-actions, .cta-actions { flex-direction: column; }
+      .btn, .nav-cta { width: 100%; }
+      .nav-links { gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div class="brand-text">
+          <h1>Pakistan MUN Wing</h1>
+          <p>Diplomacy. Dialogue. Leadership.</p>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#committees">Committees</a>
+        <a href="#events">Events</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <a class="nav-cta" href="#register">Apply Now</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><span class="dot"></span> A premium platform for young diplomats across Pakistan</div>
+          <h2>Where <span class="accent">future leaders</span> learn to speak, negotiate, and lead.</h2>
+          <p>
+            Pakistan MUN Wing is built for delegates who want a more refined, competitive, and professional conference experience—
+            with polished committees, high-impact training, and unforgettable debate.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#register">Register for the Next Conference</a>
+            <a class="btn btn-secondary" href="#committees">Explore Committees</a>
+          </div>
+        </div>
+
+        <div class="hero-card reveal">
+          <div class="hero-card-top">
+            <div>
+              <h3>Pakistan MUN Wing 2026</h3>
+              <p>Elevating student diplomacy with a world-class experience</p>
+            </div>
+            <div class="mini-badge">Monochrome Edition</div>
+          </div>
+          <div class="hero-image"></div>
+          <div class="hero-stats">
+            <div class="stat"><strong>40+</strong><span>Delegations</span></div>
+            <div class="stat"><strong>12</strong><span>Committees</span></div>
+            <div class="stat"><strong>3</strong><span>Days of Debate</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="block">
+      <div class="container grid-2">
+        <div class="card pad reveal">
+          <div class="section-head">
+            <h3>About the Wing</h3>
+            <p>
+              We create an environment where delegates can sharpen public speaking, diplomacy, research, crisis response, and consensus-building.
+            </p>
+          </div>
+          <div class="info-list">
+            <div class="info-item">
+              <div class="icon">01</div>
+              <div>
+                <h4>Professional experience</h4>
+                <p>Designed to feel polished, competitive, and globally inspired.</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="icon">02</div>
+              <div>
+                <h4>Delegate-centered</h4>
+                <p>Strong chairing, clear rules, and a smooth registration flow.</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="icon">03</div>
+              <div>
+                <h4>Skill-building</h4>
+                <p>Confidence, research, leadership, and real negotiation practice.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card pad reveal">
+          <div class="section-head">
+            <h3>Why it stands out</h3>
+            <p>
+              This version keeps the premium structure but shifts everything into a black, white, and grey identity.
+            </p>
+          </div>
+          <div class="feature-grid" style="grid-template-columns: 1fr 1fr;">
+            <div class="feature">
+              <span class="feature-tag">Visual Identity</span>
+              <h4>Elegant monochrome</h4>
+              <p>Black, white, and grey tones for a timeless formal look.</p>
+            </div>
+            <div class="feature">
+              <span class="feature-tag">User Experience</span>
+              <h4>Smooth interactions</h4>
+              <p>Sticky nav, reveal animations, scroll progress, and responsive layout.</p>
+            </div>
+            <div class="feature">
+              <span class="feature-tag">Conference Feel</span>
+              <h4>Event storytelling</h4>
+              <p>Hero stats, timeline, testimonials, FAQ, and registration call-to-action.</p>
+            </div>
+            <div class="feature">
+              <span class="feature-tag">Performance</span>
+              <h4>Single-file ready</h4>
+              <p>Easy to run, edit, and host as one polished HTML page.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="block">
+      <div class="container">
+        <div class="section-head reveal">
+          <h3>Conference features</h3>
+          <p>Built to make the website feel alive, modern, and highly credible.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature reveal"><span class="feature-tag">Motion</span><h4>Animated entrances</h4><p>Sections fade in as the user scrolls for a cinematic feel.</p></div>
+          <div class="feature reveal"><span class="feature-tag">Branding</span><h4>Premium palette</h4><p>Neutral tones that look formal, tasteful, and memorable.</p></div>
+          <div class="feature reveal"><span class="feature-tag">Clarity</span><h4>Clear content blocks</h4><p>Everything is organized like a true conference website.</p></div>
+          <div class="feature reveal"><span class="feature-tag">Trust</span><h4>Strong structure</h4><p>Stats, programs, and testimonials add authority and polish.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="committees" class="block">
+      <div class="container">
+        <div class="section-head reveal">
+          <h3>Committees</h3>
+          <p>Sample committee cards with rich backgrounds and topic pills.</p>
+        </div>
+
+        <div class="committees">
+          <article class="card committee reveal">
+            <div class="cover" style="background-image:url('https://images.unsplash.com/photo-1531206715517-5c0ba140b2b9?auto=format&fit=crop&w=1200&q=80')"></div>
+            <div class="content">
+              <h4>Security Council</h4>
+              <p>High-stakes crisis management, peacekeeping, sanctions, and global security.</p>
+              <div class="pill-row">
+                <span class="pill">Crisis</span><span class="pill">Peacekeeping</span><span class="pill">UNSC</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card committee reveal">
+            <div class="cover" style="background-image:url('https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=80')"></div>
+            <div class="content">
+              <h4>Human Rights Council</h4>
+              <p>Freedom, equality, protection, and policy responses to humanitarian concerns.</p>
+              <div class="pill-row">
+                <span class="pill">Rights</span><span class="pill">Justice</span><span class="pill">Protection</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card committee reveal">
+            <div class="cover" style="background-image:url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=80')"></div>
+            <div class="content">
+              <h4>Economic & Social Council</h4>
+              <p>Development, inequality, public welfare, and global cooperation on policy.</p>
+              <div class="pill-row">
+                <span class="pill">Development</span><span class="pill">Economy</span><span class="pill">Policy</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="events" class="block">
+      <div class="container grid-2">
+        <div class="card pad reveal">
+          <div class="section-head">
+            <h3>Conference schedule</h3>
+            <p>A clean timeline layout that makes the event feel organized and serious.</p>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div><strong>Day 1</strong></div>
+              <div>
+                <strong>Opening Ceremony & Orientation</strong>
+                <p>Registration, opening address, rules of procedure, and committee introductions.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div><strong>Day 2</strong></div>
+              <div>
+                <strong>Committee Sessions</strong>
+                <p>Formal debate, moderated caucuses, and drafting blocs for resolutions.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div><strong>Day 3</strong></div>
+              <div>
+                <strong>Final Voting & Closing</strong>
+                <p>Resolution voting, awards, and closing remarks celebrating top delegates.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card pad reveal">
+          <div class="section-head">
+            <h3>Delegate benefits</h3>
+            <p>What participants take away from the experience.</p>
+          </div>
+          <div class="info-list">
+            <div class="info-item">
+              <div class="icon">★</div>
+              <div>
+                <h4>Confidence</h4>
+                <p>Learn to speak with clarity and authority in any room.</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="icon">✓</div>
+              <div>
+                <h4>Research strength</h4>
+                <p>Build strong background knowledge and argumentation skills.</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="icon">↗</div>
+              <div>
+                <h4>Leadership</h4>
+                <p>Grow into a stronger speaker, negotiator, and team player.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="block">
+      <div class="container">
+        <div class="section-head reveal">
+          <h3>What delegates say</h3>
+          <p>Social proof makes the page feel more authentic and premium.</p>
+        </div>
+        <div class="testimonials">
+          <div class="quote reveal">
+            <p>“The design feels far more polished and international. It immediately looks like a serious conference brand.”</p>
+            <div class="who"><div class="avatar">A</div> Ayesha — Delegate</div>
+          </div>
+          <div class="quote reveal">
+            <p>“The sections are organized beautifully, and the monochrome palette gives it a timeless formal identity.”</p>
+            <div class="who"><div class="avatar">O</div> Omar — Chair</div>
+          </div>
+          <div class="quote reveal">
+            <p>“This version feels like a real website people would trust for registrations and conference details.”</p>
+            <div class="who"><div class="avatar">Z</div> Zara — Organizing Team</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="block">
+      <div class="container grid-2">
+        <div class="card pad reveal">
+          <div class="section-head">
+            <h3>Frequently asked questions</h3>
+            <p>Simple FAQ blocks help the page feel complete.</p>
+          </div>
+          <div class="faq">
+            <details open>
+              <summary>What is Pakistan MUN Wing?</summary>
+              <p>A platform for students in Pakistan to experience high-quality MUN conferences and training.</p>
+            </details>
+            <details>
+              <summary>Can the theme be changed again?</summary>
+              <p>Yes. The palette, typography, committee cards, and hero section can all be customized.</p>
+            </details>
+            <details>
+              <summary>Can I add forms and real registration?</summary>
+              <p>Yes. This layout is ready for a form backend, Google Forms embed, or direct mail capture.</p>
+            </details>
+          </div>
+        </div>
+
+        <div id="register" class="card pad reveal">
+          <div class="section-head">
+            <h3>Register your interest</h3>
+            <p>Use this as a contact / signup section for delegates and schools. Replace the Formspree form ID with your own so submissions land in your email.</p>
+          </div>
+          <form action="https://formspree.io/f/xkopneoa" method="POST">
+            <div class="newsletter">
+              <input type="text" name="name" placeholder="Full name" required />
+              <input type="email" name="email" placeholder="Email address" required />
+            </div>
+            <div style="height:12px"></div>
+            <input type="text" name="institution" placeholder="School / University" style="margin-bottom:12px;" />
+            <textarea rows="5" name="message" placeholder="Tell us what you would like to join or ask about..." required></textarea>
+            <div class="cta-actions" style="margin-top:16px;">
+              <button class="btn btn-primary" type="submit">Submit Inquiry</button>
+              <a class="btn btn-secondary" href="#" download>Download Brochure</a>
+            </div>
+          <input type="hidden" name="_subject" value="New Pakistan MUN Wing application" />
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="container cta reveal">
+        <h3>Ready to build Pakistan’s most elegant MUN presence?</h3>
+        <p>
+          This version is designed to feel premium, clean, and modern—so your wing looks strong from the very first glance.
+        </p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="#register">Start Registration</a>
+          <a class="btn btn-secondary" href="#about">Learn More</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px;">
+          <div class="brand-mark"></div>
+          <div class="brand-text">
+            <h1 style="font-size:1.55rem;">Pakistan MUN Wing</h1>
+            <p>Diplomacy. Dialogue. Leadership.</p>
+          </div>
+        </div>
+        <p style="margin:0; max-width:420px;">
+          A refined and professional digital identity for your MUN wing, built to impress delegates, chairs, and schools.
+        </p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="#about">About</a><br>
+        <a href="#features">Features</a><br>
+        <a href="#committees">Committees</a><br>
+        <a href="#register">Register</a>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <a href="#">Instagram</a><br>
+        <a href="#">Facebook</a><br>
+        <a href="#">Email</a><br>
+        <a href="#">WhatsApp</a>
+      </div>
+    </div>
+    <div class="container bottom-bar">
+      <div>© 2026 Pakistan MUN Wing. All rights reserved.</div>
+      <div>Built for a premium delegate experience.</div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+    const scrollTopBtn = document.getElementById('scrollTop');
+    const progress = document.getElementById('progress');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('in');
+      });
+    }, { threshold: 0.14 });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    function updateScrollUI() {
+      const scrollTop = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? (scrollTop / max) * 100 : 0;
+      progress.style.width = pct + '%';
+      scrollTopBtn.classList.toggle('show', scrollTop > 500);
+    }
+
+    window.addEventListener('scroll', updateScrollUI, { passive: true });
+    updateScrollUI();
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
